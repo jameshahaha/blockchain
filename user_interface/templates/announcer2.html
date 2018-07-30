@@ -85,19 +85,21 @@
 
         <br>
         
+
+        
         <div class="row">
-          <label class="col-sm-2">Task Description</label>
+          <label class="col-sm-2">Reward Amount:</label>
           <div class="col-sm-10">
-            <textarea name="task_description" id="task_description" rows="2" class="form-control"></textarea>
+            <input type="text" name="amount" id="amount" rows="2" class="form-control">
           </div>
         </div>
 
         <br>
-        
+
         <div class="row">
-          <label class="col-sm-2">Reward Amount:</label>  
+          <label class="col-sm-2">Task Description:</label>
           <div class="col-sm-10">
-            <input type="text" name="amount" id="amount" rows="2" class="form-control">
+            <textarea name="task_description" id="task_description" rows="5" class="form-control"></textarea> 
           </div>
         </div>
 
@@ -105,7 +107,7 @@
         
         <div class="row">
           <div class="col-lg-12 text-center">
-            <input type="button" id="generate_transaction" class="btn btn-primary btn-lg" value="Generate Transaction">
+            <input type="button" id="submit_task" class="btn btn-primary btn-lg" value="Submit Task">
           </div>
         </div>
 
@@ -122,7 +124,7 @@
         <div class="modal-content">
 
           <div class="modal-header">
-            <div class="modal-title col-md-10">Confirm transaction details, enter a blockchain node url and click on "Confirm Transaction" to finalize your transaction.</div>
+            <div class="modal-title col-md-10">Enter task details and click on the "Submit" button to post your request.</div>
             <button type="button" class="close col-md-2" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
 
@@ -139,23 +141,23 @@
                 </div>
 
                 <div class="row">
-                  <label class="col-sm-12">Task Description:</label>
-                  <div class="col-sm-12">
-                    <textarea name="task_description" id="confirmation_task_description" rows="2" class="form-control" readonly></textarea>
+                  <label class="col-sm-2">Sender Private Key:</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="sender_private_key" id="confirmation_sender_private_key" rows="2" class="form-control">
                   </div>
                 </div>
                 
                 <div class="row">
-                  <label class="col-sm-12">Reward Amount:</label>
+                  <label class="col-sm-12">Amount to Send:</label>
                   <div class="col-sm-12">
                     <input type="text" name="amount" id="confirmation_amount" rows="2" class="form-control" readonly>
                   </div>
                 </div>
 
                 <div class="row">
-                  <label class="col-sm-12">Transaction Signature:</label>
-                  <div class="col-sm-12">
-                    <input type="text" name="signature" id="transaction_signature" rows="2" class="form-control" readonly>
+                  <label class="col-sm-2">Task Description:</label>
+                  <div class="col-sm-10">
+                    <textarea name="task_description" id="confirmation_task_description" rows="5" class="form-control"></textarea> 
                   </div>
                 </div>
 
@@ -216,7 +218,7 @@
     <script>
 
       $(function () {
-          $("#generate_transaction").click(function () {
+          $("#submit_task").click(function () {
 
             $.ajax({
               url: "/submit",
@@ -227,7 +229,7 @@
 
                 document.getElementById("confirmation_sender_address").value = response["transaction"]["sender_address"];
                 document.getElementById("confirmation_task_description").value = response["transaction"]["task_description"];
-                document.getElementById("confirmation_amount").value = response["transaction"]["value"];
+                document.getElementById("confirmation_amount").value = response["transaction"]["amount"];
                 document.getElementById("transaction_signature").value = response["signature"];
 
                 $("#basicModal").modal('show');
@@ -248,7 +250,7 @@
 
 
             $.ajax({
-              url: "/confirm"
+              url: document.getElementById("node_url").value + "/transactions/new",
               type: "POST",
               headers: {'Access-Control-Allow-Origin':'*'},
               dataType : 'json',
