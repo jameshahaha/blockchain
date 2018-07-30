@@ -87,9 +87,18 @@ def index():
 def announcer():
     return render_template('./announcer.html')
 
-@app.route('/submit', methods=['POST'])
-def generate_transaction():
 
+@app.route('/submit')
+def generate_transaction():
+    return 600
+
+@app.route('/tasklist')
+def tasklist():
+    return render_template('./tasklist.html')
+
+@app.route('/history')
+def history():
+    return render_template('./history.html')
 
 
 @app.route('/confirm', methods=['POST'])
