@@ -233,12 +233,12 @@
               data: $('#transaction_form').serialize(),
               success: function(response){
 
-                document.getElementById("confirmation_sender_address").value = response["transaction"]["sender_address"];
-                document.getElementById("confirmation_task_description").value = response["transaction"]["task_description"];
-                document.getElementById("confirmation_amount").value = response["transaction"]["value"];
+                document.getElementById("confirmation_sender_address").value = response["task"]["sender_address"];
+                document.getElementById("confirmation_task_description").value = response["task"]["task_description"];
+                document.getElementById("confirmation_amount").value = response["task"]["value"];
                 document.getElementById("transaction_signature").value = response["signature"];
 
-                 $("#basicModal").modal('show');
+                $("#basicModal").modal('show');
                 
               },
               error: function(error){
@@ -246,7 +246,7 @@
               }
             });
 
-          });
+          }); 
       });
 
 
@@ -256,7 +256,8 @@
 
 
             $.ajax({
-              url: document.getElementById("node_url").value + "/transactions/new",
+              // url: document.getElementById("node_url").value + "/tasks/new",
+              url: "/submit",
               type: "POST",
               headers: {'Access-Control-Allow-Origin':'*'},
               dataType : 'json',
