@@ -106,7 +106,7 @@
         
         <div class="row">
           <div class="col-lg-12 text-center">
-            <input type="button" id="generate_transaction" class="btn btn-primary btn-lg" value="Generate Transaction">
+            <input type="button" id="submit_task" class="btn btn-primary btn-lg" value="Submit Task">
           </div>
         </div>
 
@@ -223,7 +223,8 @@
     <script>
 
       $(function () {
-          $("#generate_transaction").click(function () {
+        alert("hello")
+          $("#submit_task").click(function () {
 
             $.ajax({
               url: "/confirm",
@@ -237,7 +238,7 @@
                 document.getElementById("confirmation_amount").value = response["transaction"]["value"];
                 document.getElementById("transaction_signature").value = response["signature"];
 
-                $("#basicModal").modal('show');
+                 $("#basicModal").modal('show');
                 
               },
               error: function(error){
@@ -255,7 +256,7 @@
 
 
             $.ajax({
-              url: "/confirm"
+              url: document.getElementById("node_url").value + "/transactions/new",
               type: "POST",
               headers: {'Access-Control-Allow-Origin':'*'},
               dataType : 'json',

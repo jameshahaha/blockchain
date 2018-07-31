@@ -88,9 +88,9 @@ def announcer():
     return render_template('./announcer.html')
 
 
-@app.route('/submit')
-def generate_transaction():
-    return 600
+# @app.route('/submit')
+# def generate_transaction():
+#     return 600
 
 @app.route('/tasklist')
 def tasklist():
