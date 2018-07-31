@@ -49,6 +49,7 @@ class Blockchain:
     def __init__(self):
         
         self.transactions = []
+        self.tasks = []
         self.chain = []
         self.nodes = set() # A set is an unordered collection with no duplicate elements
         #Generate random number to be used as node_id
@@ -103,6 +104,21 @@ class Blockchain:
                 return len(self.chain) + 1
             else:
                 return False
+
+    def submit_task(self, sender_address, task_description, value, signature):
+        """
+        Add a transaction to transactions array if the signature verified
+        """
+        task = OrderedDict({'sender_address': sender_address, 
+                                    'task_description': task_description,
+                                    'value': value})
+
+        task_verification = self.verify_transaction_signature(sender_address, signature, task)
+        if task_verification:
+            self.tasks.append(task)
+            return len(self.chain) + 1
+        else:
+            return False
 
 
     def create_block(self, nonce, previous_hash):
@@ -242,6 +258,24 @@ def dApp():
     return render_template('./dApp.html')
 
 
+
+@app.route('/tasks/new', methods=['POST'])
+def new_task():
+    values = request.form
+
+    # Check that the required fields are in the POST'ed data
+    required = ['sender_address', 'task_description', 'amount', 'signature']
+    if not all(k in values for k in required):
+        return 'Missing values', 400
+    # Create a new Transaction
+    task_result = blockchain.submit_task(values['sender_address'], values['task_description'], values['amount'], values['signature'])
+
+    if task_result == False:
+        response = {'message': 'Invalid Transaction!'}
+        return jsonify(response), 406
+    else:
+        response = {'message': 'Transaction will be added to Block '+ str(task_result)}
+        return jsonify(response), 201
 
 @app.route('/transactions/new', methods=['POST'])
 def new_transaction():
