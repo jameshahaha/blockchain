@@ -37,12 +37,37 @@ import requests
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 
-
+from telnetlib import Telnet
 
 MINING_SENDER = "THE BLOCKCHAIN"
 MINING_REWARD = 1
 MINING_DIFFICULTY = 2
 
+
+# class Task:
+
+#     def __init__(self, sender_address, sender_private_key, task_description, value):
+#         self.sender_address = sender_address
+#         self.sender_private_key = sender_private_key
+#         self.task_description = task_description
+#         self.value = value
+
+#     def __getattr__(self, attr):
+#         return self.data[attr]
+
+#     def to_dict(self):
+#         return OrderedDict({'sender_address': self.sender_address,
+#                             'task_description': self.task_description,
+#                             'value': self.value})
+
+#     def sign_transaction(self):
+#         """
+#         Sign transaction with private key
+#         """
+#         private_key = RSA.importKey(binascii.unhexlify(self.sender_private_key))
+#         signer = PKCS1_v1_5.new(private_key)
+#         h = SHA.new(str(self.to_dict()).encode('utf8'))
+#         return binascii.hexlify(signer.sign(h)).decode('ascii')
 
 class Blockchain:
 
@@ -234,6 +259,29 @@ class Blockchain:
 
         return False
 
+def telnet_connect(msg):
+        HOST = '100.98.10.148'
+        PORT = 1025
+
+        tn = Telnet(HOST, PORT)
+        line = tn.read_until("An apple a day keeps the doctor away\r\n")
+        print(line)
+
+        tn.write(b'GOOD\r\n')
+        line = tn.read_until("\n")
+        print(line)
+        tx = ''
+
+        for key, value in msg.items():
+                tx += key + ': ' + str(value) + '\r\n'
+        print("Sending data: {}".format(tx))
+        tn.write(b'{}'.format(tx))
+        line = tn.read_until("\n")
+
+        print("Closing the connection ...")
+        tn.close()
+    
+
 # Instantiate the Node
 app = Flask(__name__)
 CORS(app)
@@ -267,14 +315,27 @@ def new_task():
     required = ['sender_address', 'task_description', 'amount', 'signature']
     if not all(k in values for k in required):
         return 'Missing values', 400
-    # Create a new Transaction
+
     task_result = blockchain.submit_task(values['sender_address'], values['task_description'], values['amount'], values['signature'])
+
 
     if task_result == False:
         response = {'message': 'Invalid Transaction!'}
         return jsonify(response), 406
     else:
         response = {'message': 'Transaction will be added to Block '+ str(task_result)}
+        sender_address = request.form['sender_address']
+        task_description = request.form['task_description']
+        value = request.form['amount']
+        signature = request.form['signature']
+
+        task = OrderedDict({'sender_address': sender_address,
+                                'task_description': task_description,
+                                'value': value})
+
+        submission = {'task': task, 'signature': signature}
+        # telnet_connect(submission)
+
         return jsonify(response), 201
 
 @app.route('/transactions/new', methods=['POST'])
@@ -301,6 +362,14 @@ def get_transactions():
     transactions = blockchain.transactions
 
     response = {'transactions': transactions}
+    return jsonify(response), 200
+
+
+@app.route('/tasks/get', methods=['GET'])
+def get_tasks():
+    #Get transactions from transactions pool
+    tasks = blockchain.tasks
+    response = {'tasks': tasks}
     return jsonify(response), 200
 
 @app.route('/chain', methods=['GET'])

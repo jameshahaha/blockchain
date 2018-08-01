@@ -45,7 +45,7 @@ class Task:
 
 
     def sign_transaction(self):
-        """
+        """ 
         Sign transaction with private key
         """
         private_key = RSA.importKey(binascii.unhexlify(self.sender_private_key))
@@ -102,8 +102,8 @@ def history():
     return render_template('./history.html')
 
 
-@app.route('/confirm', methods=['POST'])
-def confirm_task():
+@app.route('/submit', methods=['POST'])
+def submit_task():
     sender_address = request.form['sender_address']
     sender_private_key = request.form['sender_private_key']
     task_description = request.form['task_description']
@@ -114,24 +114,23 @@ def confirm_task():
     response = {'task': task.to_dict(), 'signature': task.sign_transaction()}
     return jsonify(response), 200
 
-@app.route('/submit', methods=['POST'])
-def submit_task():
+# # @app.route('/confirm', methods=['POST'])
+# # def confirm_task():
 
 
-    sender_address = request.form['sender_address']
-    task_description = request.form['task_description']
-    value = request.form['amount']
-    signature = request.form['signature']
+#     sender_address = request.form['sender_address']
+#     task_description = request.form['task_description']
+#     value = request.form['amount']
+#     signature = request.form['signature']
 
-    task = OrderedDict({'sender_address': sender_address,
-                            'task_description': task_description,
-                            'value': value})
+#     task = OrderedDict({'sender_address': sender_address,
+#                             'task_description': task_description,
+#                             'value': value})
 
 
-    response = {'task': task, 'signature': signature}
+# #     # response = {'task': task, 'signature': signature}
 
-    # telnet_connect(response)
-    return jsonify(response), 200
+# #     return jsonify(response), 200
 
 
 if __name__ == '__main__':

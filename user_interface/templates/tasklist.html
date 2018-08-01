@@ -44,7 +44,7 @@
           </ul>
         </div>
       </div>
-    </nav
+    </nav>
   
 
  
@@ -69,7 +69,7 @@
         <div class="row">
           <label class="col-sm-2">Node URL:</label>
           <div class="col-sm-10">
-            <textarea id="node_url" rows="1" class="form-control">http://127.0.0.1:5000</textarea>
+            <textarea id="node_url" rows="1" class="form-control">http://127.0.0.1:5001</textarea>
           </div>
         </div>
 
@@ -105,49 +105,54 @@
 
       $(function(){
 
-        
         $('#view_transactions').click(function(){
 
           $.ajax({
-            url: document.getElementById("node_url").value + "/chain",
+            // url: "/tasks/get",
+            url: document.getElementById("node_url").value + "/tasks/get",
             type: 'GET',
             success: function(response){
 
-              console.log(response);
-              //Generate Transactions Table
-              var transactions = [];
-              count = 1;
+                //Generate Transactions Table
+                // var transactions = [];
+                // count = 1;
 
-              for (i = 1; i < response.length; i++) { 
-                for (j = 0; j < response["chain"][i]["transactions"].length; j++) {
+                // for (i = 0; i < response['transactions'].length; i++) { 
 
-                  //format date 
-                  var options = {  year: "numeric", month: "short",  day: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit"  };
-                  var date = new Date(response["chain"][i]["timestamp"] * 1000);
-                  var formattedDateTime = date.toLocaleTimeString("en-us", options);
+                //   transaction = [count,
+                //                 response['transactions'][i]["recipient_address"],
+                //                 response['transactions'][i]["sender_address"],
+                //                 response['transactions'][i]["value"]];
 
-                  transaction = [count,
-                                response["chain"][i]["transactions"][j]["recipient_address"],
-                                response["chain"][i]["transactions"][j]["sender_address"],
-                                response["chain"][i]["transactions"][j]["value"],
-                                formattedDateTime,
-                                response["chain"][i]["block_number"]];
-                  transactions.push(transaction);
+                //     transactions.push(transaction);
 
-                  count += 1;
+                //     count += 1;
+                // };
+
+                // var tasks = [[1,"dog","dog",2],[2,"cat","cat",2]];
+                var tasks = [];
+                count = 1;
+
+                for (i = 0; i < response['tasks'].length; i++) { 
+
+                  task = [count,
+                                response['tasks'][i]["sender_address"],
+                                response['tasks'][i]["task_description"],
+                                response['tasks'][i]["value"]];
+
+                    tasks.push(task);
+
+                    count += 1;
                 };
-              };
 
               // Restrict a column to 10 characters, do split words
                 $('#transactions_table').dataTable( {
-                  data: transactions,
+                  data: tasks,
                   columns: [{ title: "#" },
-                            { title: "Recipient Address"},
                             { title: "Sender Address"},
-                            { title: "Value"},
-                            { title: "Timestamp"},
-                            { title: "Block"}],
-                  columnDefs: [ {targets: [1,2,3,4,5], render: $.fn.dataTable.render.ellipsis( 25 )}]
+                            { title: "Task"},
+                            { title: "Value"}],
+                  columnDefs: [ {targets: [1,2,3], render: $.fn.dataTable.render.ellipsis( 25 )}]
                 } );
 
             },
@@ -156,9 +161,64 @@
             }
           });
         });
+      });
+
+      // $(function(){
+
+        
+      //   $('#view_transactions').click(function(){
+
+      //     $.ajax({
+      //       url: document.getElementById("node_url").value + "/chain",
+      //       type: 'GET',
+      //       success: function(response){
+
+      //         console.log(response);
+      //         //Generate Transactions Table
+      //         var transactions = [];
+      //         count = 1;
+
+      //         for (i = 1; i < response.length; i++) { 
+      //           for (j = 0; j < response["chain"][i]["transactions"].length; j++) {
+
+      //             //format date 
+      //             var options = {  year: "numeric", month: "short",  day: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit"  };
+      //             var date = new Date(response["chain"][i]["timestamp"] * 1000);
+      //             var formattedDateTime = date.toLocaleTimeString("en-us", options);
+
+      //             transaction = [count,
+      //                           response["chain"][i]["transactions"][j]["recipient_address"],
+      //                           response["chain"][i]["transactions"][j]["sender_address"],
+      //                           response["chain"][i]["transactions"][j]["value"],
+      //                           formattedDateTime,
+      //                           response["chain"][i]["block_number"]];
+      //             transactions.push(transaction);
+
+      //             count += 1;
+      //           };
+      //         };
+
+      //         // Restrict a column to 10 characters, do split words
+      //           $('#transactions_table').dataTable( {
+      //             data: transactions,
+      //             columns: [{ title: "#" },
+      //                       { title: "Recipient Address"},
+      //                       { title: "Sender Address"},
+      //                       { title: "Value"},
+      //                       { title: "Timestamp"},
+      //                       { title: "Block"}],
+      //             columnDefs: [ {targets: [1,2,3,4,5], render: $.fn.dataTable.render.ellipsis( 25 )}]
+      //           } );
+
+      //       },
+      //       error: function(error){
+      //         console.log(error);
+      //       }
+      //     });
+      //   });
 
 
-      })
+      // })
 
 
 

@@ -227,7 +227,7 @@
           $("#submit_task").click(function () {
 
             $.ajax({
-              url: "/confirm",
+              url: "/submit",
               type: "POST",
               dataType : 'json',
               data: $('#transaction_form').serialize(),
@@ -256,8 +256,8 @@
 
 
             $.ajax({
-              // url: document.getElementById("node_url").value + "/tasks/new",
-              url: "/submit",
+              url: document.getElementById("node_url").value + "/tasks/new",
+              // url: "/confirm",
               type: "POST",
               headers: {'Access-Control-Allow-Origin':'*'},
               dataType : 'json',
