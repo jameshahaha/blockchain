@@ -5,9 +5,9 @@ usage           : python blockchain.py
                   python blockchain.py -p 5000
                   python blockchain.py --port 5000
 python_version  : 3.6.1
-Comments        : The blockchain implementation is mostly based on [1]. 
-                  I made a few modifications to the original code in order to add RSA encryption to the transactions 
-                  based on [2], changed the proof of work algorithm, and added some Flask routes to interact with the 
+Comments        : The blockchain implementation is mostly based on [1].
+                  I made a few modifications to the original code in order to add RSA encryption to the transactions
+                  based on [2], changed the proof of work algorithm, and added some Flask routes to interact with the
                   blockchain from the dashboards
 References      : [1] https://github.com/dvf/blockchain/blob/master/blockchain.py
                   [2] https://github.com/julienr/ipynb_playground/blob/master/bitcoin/dumbcoin/dumbcoin.ipynb
@@ -25,7 +25,7 @@ from Crypto.Signature import PKCS1_v1_5
 
 import hashlib
 import json
-from time import time
+from time import time, sleep
 #from urllib.parse import urlparse
 try:
     from urllib.parse import urlparse
@@ -39,42 +39,20 @@ from flask_cors import CORS
 
 from telnetlib import Telnet
 
+import threading
+import os
+
 MINING_SENDER = "THE BLOCKCHAIN"
 MINING_REWARD = 1
 MINING_DIFFICULTY = 2
 
-
-# class Task:
-
-#     def __init__(self, sender_address, sender_private_key, task_description, value):
-#         self.sender_address = sender_address
-#         self.sender_private_key = sender_private_key
-#         self.task_description = task_description
-#         self.value = value
-
-#     def __getattr__(self, attr):
-#         return self.data[attr]
-
-#     def to_dict(self):
-#         return OrderedDict({'sender_address': self.sender_address,
-#                             'task_description': self.task_description,
-#                             'value': self.value})
-
-#     def sign_transaction(self):
-#         """
-#         Sign transaction with private key
-#         """
-#         private_key = RSA.importKey(binascii.unhexlify(self.sender_private_key))
-#         signer = PKCS1_v1_5.new(private_key)
-#         h = SHA.new(str(self.to_dict()).encode('utf8'))
-#         return binascii.hexlify(signer.sign(h)).decode('ascii')
+THREAD_STATE = True
 
 class Blockchain:
 
     def __init__(self):
-        
         self.transactions = []
-        self.tasks = []
+        self.tasks = []        
         self.chain = []
         self.nodes = set() # A set is an unordered collection with no duplicate elements
         #Generate random number to be used as node_id
@@ -113,7 +91,7 @@ class Blockchain:
         """
         Add a transaction to transactions array if the signature verified
         """
-        transaction = OrderedDict({'sender_address': sender_address, 
+        transaction = OrderedDict({'sender_address': sender_address,
                                     'recipient_address': recipient_address,
                                     'value': value})
 
@@ -129,7 +107,6 @@ class Blockchain:
                 return len(self.chain) + 1
             else:
                 return False
-
     def submit_task(self, sender_address, task_description, value, signature):
         """
         Add a transaction to transactions array if the signature verified
@@ -169,7 +146,6 @@ class Blockchain:
         """
         # We must make sure that the Dictionary is Ordered, or we'll have inconsistent hashes
         block_string = json.dumps(block, sort_keys=True).encode()
-        
         return hashlib.sha256(block_string).hexdigest()
 
 
@@ -259,9 +235,11 @@ class Blockchain:
 
         return False
 
+
+# Send data to the telnet server once a block is mined
 def telnet_connect(msg):
-        HOST = '100.98.10.148'
-        PORT = 1025
+	HOST = '100.98.10.148'
+	PORT = 1025
 
         tn = Telnet(HOST, PORT)
         line = tn.read_until("An apple a day keeps the doctor away\r\n")
@@ -280,7 +258,38 @@ def telnet_connect(msg):
 
         print("Closing the connection ...")
         tn.close()
-    
+
+# Add a permanent telnet connection to the chatserver to receive data 
+def permanent_telnet_connection():
+	HOST = '100.98.10.148'
+        PORT = 1025
+
+        tn = Telnet(HOST, PORT)
+
+        line = tn.read_until("An apple a day keeps the doctor away\r\n")
+#        print(line)
+        tn.write(b'GOOD\r\n')
+
+        while 'quit' not in line:
+                line = tn.read_until("\n")
+#                print(line)
+		write_data(line)
+        tn.close()
+	print('Perm connection stopped by QUIT command')
+	THREAD_STATE = False
+
+
+# Write the data into a local file
+def write_data(data):
+	path = os.getcwd()
+	l = path.split('/')
+	fileloc = str('/' + l[1] + '/'+ l[2] + '/')
+	os.chdir(fileloc)
+	filename = fileloc + 'data.txt'
+
+	file = open(filename, 'a')
+	file.write(data)
+	file.close()
 
 # Instantiate the Node
 app = Flask(__name__)
@@ -289,22 +298,18 @@ CORS(app)
 # Instantiate the Blockchain
 blockchain = Blockchain()
 
+
+# Function to run the app
+def run_app(port):
+	app.run(host='100.98.10.148',port=port)
+
 @app.route('/')
 def index():
-    return render_template('./index.html')
+	return render_template('./index.html')
 
 @app.route('/configure')
 def configure():
-    return render_template('./configure.html')
-
-@app.route('/tasks')
-def tasks():
-    return render_template('./tasks.html')
-
-@app.route('/dApp')
-def dApp():
-    return render_template('./dApp.html')
-
+	return render_template('./configure.html')
 
 
 @app.route('/tasks/new', methods=['POST'])
@@ -340,30 +345,29 @@ def new_task():
 
 @app.route('/transactions/new', methods=['POST'])
 def new_transaction():
-    values = request.form
+	values = request.form
 
-    # Check that the required fields are in the POST'ed data
-    required = ['sender_address', 'recipient_address', 'amount', 'signature']
-    if not all(k in values for k in required):
-        return 'Missing values', 400
-    # Create a new Transaction
-    transaction_result = blockchain.submit_transaction(values['sender_address'], values['recipient_address'], values['amount'], values['signature'])
+	# Check that the required fields are in the POST'ed data
+	required = ['sender_address', 'recipient_address', 'amount', 'signature']
+	if not all(k in values for k in required):
+		return 'Missing values', 400
+	# Create a new Transaction
+	transaction_result = blockchain.submit_transaction(values['sender_address'], values['recipient_address'], values['amount'], values['signature'])
 
-    if transaction_result == False:
-        response = {'message': 'Invalid Transaction!'}
-        return jsonify(response), 406
-    else:
-        response = {'message': 'Transaction will be added to Block '+ str(transaction_result)}
-        return jsonify(response), 201
+	if transaction_result == False:
+		response = {'message': 'Invalid Transaction!'}
+		return jsonify(response), 406
+	else:
+		response = {'message': 'Transaction will be added to Block '+ str(transaction_result)}
+		return jsonify(response), 201
 
 @app.route('/transactions/get', methods=['GET'])
 def get_transactions():
-    #Get transactions from transactions pool
-    transactions = blockchain.transactions
+	#Get transactions from transactions pool
+	transactions = blockchain.transactions
 
-    response = {'transactions': transactions}
-    return jsonify(response), 200
-
+	response = {'transactions': transactions}
+	return jsonify(response), 200
 
 @app.route('/tasks/get', methods=['GET'])
 def get_tasks():
@@ -372,93 +376,105 @@ def get_tasks():
     response = {'tasks': tasks}
     return jsonify(response), 200
 
+
 @app.route('/chain', methods=['GET'])
 def full_chain():
-    response = {
-        'chain': blockchain.chain,
-        'length': len(blockchain.chain),
-    }
-    return jsonify(response), 200
+	response = {
+		'chain': blockchain.chain,
+		'length': len(blockchain.chain),
+	}
+	return jsonify(response), 200
 
 @app.route('/mine', methods=['GET'])
 def mine():
-    # We run the proof of work algorithm to get the next proof...
-    last_block = blockchain.chain[-1]
-    nonce = blockchain.proof_of_work()
+	# We run the proof of work algorithm to get the next proof...
+	last_block = blockchain.chain[-1]
+	nonce = blockchain.proof_of_work()
 
-    # We must receive a reward for finding the proof.
-    blockchain.submit_transaction(sender_address=MINING_SENDER, recipient_address=blockchain.node_id, value=MINING_REWARD, signature="")
+	# We must receive a reward for finding the proof.
+	blockchain.submit_transaction(sender_address=MINING_SENDER, recipient_address=blockchain.node_id, value=MINING_REWARD, signature="")
 
-    # Forge the new Block by adding it to the chain
-    previous_hash = blockchain.hash(last_block)
-    block = blockchain.create_block(nonce, previous_hash)
+	# Forge the new Block by adding it to the chain
+	previous_hash = blockchain.hash(last_block)
+	block = blockchain.create_block(nonce, previous_hash)
 
-    response = {
-        'message': "New Block Forged",
-        'block_number': block['block_number'],
-        'transactions': block['transactions'],
-        'nonce': block['nonce'],
-        'previous_hash': block['previous_hash'],
-    }
-    return jsonify(response), 200
+	response = {
+		'message': "New Block Forged",
+		'block_number': block['block_number'],
+		'transactions': block['transactions'],
+		'nonce': block['nonce'],
+		'previous_hash': block['previous_hash'],
+	}
+	telnet_connect(response)
+	return jsonify(response), 200
 
 
 
 @app.route('/nodes/register', methods=['POST'])
 def register_nodes():
-    values = request.form
-    nodes = values.get('nodes').replace(" ", "").split(',')
+	values = request.form
+	nodes = values.get('nodes').replace(" ", "").split(',')
 
-    if nodes is None:
-        return "Error: Please supply a valid list of nodes", 400
+	if nodes is None:
+		return "Error: Please supply a valid list of nodes", 400
 
-    for node in nodes:
-        blockchain.register_node(node)
+	for node in nodes:
+		blockchain.register_node(node)
 
-    response = {
-        'message': 'New nodes have been added',
-        'total_nodes': [node for node in blockchain.nodes],
-    }
-    return jsonify(response), 201
+	response = {
+		'message': 'New nodes have been added',
+		'total_nodes': [node for node in blockchain.nodes],
+	}
+	return jsonify(response), 201
 
 
 @app.route('/nodes/resolve', methods=['GET'])
 def consensus():
-    replaced = blockchain.resolve_conflicts()
+	replaced = blockchain.resolve_conflicts()
 
-    if replaced:
-        response = {
-            'message': 'Our chain was replaced',
-            'new_chain': blockchain.chain
-        }
-    else:
-        response = {
-            'message': 'Our chain is authoritative',
-            'chain': blockchain.chain
-        }
-    return jsonify(response), 200
+	if replaced:
+		response = {
+			'message': 'Our chain was replaced',
+			'new_chain': blockchain.chain
+		}
+	else:
+		response = {
+			'message': 'Our chain is authoritative',
+			'chain': blockchain.chain
+		}
+	return jsonify(response), 200
 
 
 @app.route('/nodes/get', methods=['GET'])
 def get_nodes():
-    nodes = list(blockchain.nodes)
-    response = {'nodes': nodes}
-    return jsonify(response), 200
+	nodes = list(blockchain.nodes)
+	response = {'nodes': nodes}
+	return jsonify(response), 200
 
 
 
 if __name__ == '__main__':
-    from argparse import ArgumentParser
+	from argparse import ArgumentParser
 
-    parser = ArgumentParser()
-    parser.add_argument('-p', '--port', default=5000, type=int, help='port to listen on')
-    args = parser.parse_args()
-    port = args.port
+	parser = ArgumentParser()
+	parser.add_argument('-p', '--port', default=5000, type=int, help='port to listen on')
+	args = parser.parse_args()
+	port = args.port
 
-    app.run(host='100.98.10.148', port=port)
+	# app.run(host='100.98.10.148', port=port)
+	P = threading.Thread(target = permanent_telnet_connection)
+	R = threading.Thread(target = run_app, args = (port,))
+	P.daemon = True
+	R.daemon = True
+	P.start()
+	R.start()
 
+	while True:
+		sleep(1)
 
-
+#	if (THREAD_STATE == False):
+#		print(P.is_alive())
+#		P.exit()
 
 
 

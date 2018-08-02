@@ -1,0 +1,655 @@
+2018-07-05T14:15:10+0800 [-] Loading chatserver.py...
+2018-07-05T14:15:10+0800 [-] Loaded.
+2018-07-05T14:15:10+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 18.4.0 (/usr/bin/python 2.7.12) starting up.
+2018-07-05T14:15:10+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2018-07-05T14:15:10+0800 [-] ServerFactory starting on 1025
+2018-07-05T14:15:10+0800 [twisted.internet.protocol.ServerFactory#info] Starting factory <twisted.internet.protocol.ServerFactory instance at 0x7f8ea83242d8>
+2018-07-05T16:10:07+0800 [MyChat,0,150.236.32.39] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/application/app.py", line 312, in runReactorWithLogging
+	    reactor.run()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/base.py", line 1261, in run
+	    self.mainLoop()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/base.py", line 1273, in mainLoop
+	    self.doIteration(t)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/epollreactor.py", line 235, in doPoll
+	    log.callWithLogger(selectable, _drdw, selectable, fd, event)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 627, in _doReadOrWrite
+	    self._disconnectSelectable(selectable, why, inRead)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 255, in _disconnectSelectable
+	    selectable.connectionLost(f)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 289, in connectionLost
+	    protocol.connectionLost(reason)
+	  File "chatserver.py", line 24, in connectionLost
+	    peerIP = str(self._peer).split("'")[1]
+	exceptions.IndexError: list index out of range
+	
+2018-07-05T16:10:10+0800 [MyChat,1,150.236.32.39] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/application/app.py", line 312, in runReactorWithLogging
+	    reactor.run()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/base.py", line 1261, in run
+	    self.mainLoop()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/base.py", line 1273, in mainLoop
+	    self.doIteration(t)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/epollreactor.py", line 235, in doPoll
+	    log.callWithLogger(selectable, _drdw, selectable, fd, event)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 627, in _doReadOrWrite
+	    self._disconnectSelectable(selectable, why, inRead)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 255, in _disconnectSelectable
+	    selectable.connectionLost(f)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 289, in connectionLost
+	    protocol.connectionLost(reason)
+	  File "chatserver.py", line 24, in connectionLost
+	    peerIP = str(self._peer).split("'")[1]
+	exceptions.IndexError: list index out of range
+	
+2018-07-05T16:10:13+0800 [MyChat,2,150.236.32.39] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/application/app.py", line 312, in runReactorWithLogging
+	    reactor.run()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/base.py", line 1261, in run
+	    self.mainLoop()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/base.py", line 1273, in mainLoop
+	    self.doIteration(t)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/epollreactor.py", line 235, in doPoll
+	    log.callWithLogger(selectable, _drdw, selectable, fd, event)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 627, in _doReadOrWrite
+	    self._disconnectSelectable(selectable, why, inRead)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 255, in _disconnectSelectable
+	    selectable.connectionLost(f)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 289, in connectionLost
+	    protocol.connectionLost(reason)
+	  File "chatserver.py", line 24, in connectionLost
+	    peerIP = str(self._peer).split("'")[1]
+	exceptions.IndexError: list index out of range
+	
+2018-07-05T16:10:15+0800 [MyChat,3,150.236.32.39] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/application/app.py", line 312, in runReactorWithLogging
+	    reactor.run()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/base.py", line 1261, in run
+	    self.mainLoop()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/base.py", line 1273, in mainLoop
+	    self.doIteration(t)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/epollreactor.py", line 235, in doPoll
+	    log.callWithLogger(selectable, _drdw, selectable, fd, event)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 627, in _doReadOrWrite
+	    self._disconnectSelectable(selectable, why, inRead)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 255, in _disconnectSelectable
+	    selectable.connectionLost(f)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 289, in connectionLost
+	    protocol.connectionLost(reason)
+	  File "chatserver.py", line 24, in connectionLost
+	    peerIP = str(self._peer).split("'")[1]
+	exceptions.IndexError: list index out of range
+	
+2018-07-25T14:57:38+0800 [-] Received SIGTERM, shutting down.
+2018-07-25T14:57:38+0800 [-] (TCP Port 1025 Closed)
+2018-07-25T14:57:38+0800 [twisted.internet.protocol.ServerFactory#info] Stopping factory <twisted.internet.protocol.ServerFactory instance at 0x7f8ea83242d8>
+2018-07-25T14:57:38+0800 [-] Main loop terminated.
+2018-07-25T14:57:38+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] Server Shut Down.
+2018-07-25T14:58:49+0800 [-] Loading chatserver.py...
+2018-07-25T14:58:49+0800 [-] Loaded.
+2018-07-25T14:58:49+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 18.4.0 (/usr/bin/python 2.7.12) starting up.
+2018-07-25T14:58:49+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2018-07-25T14:58:49+0800 [stderr#error] Traceback (most recent call last):
+2018-07-25T14:58:49+0800 [stderr#error]   File "/home/exiibao/.local/bin/twistd", line 11, in <module>
+2018-07-25T14:58:49+0800 [stderr#error]     sys.exit(run())
+2018-07-25T14:58:49+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/scripts/twistd.py", line 31, in run
+2018-07-25T14:58:49+0800 [stderr#error]     app.run(runApp, ServerOptions)
+2018-07-25T14:58:49+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/application/app.py", line 674, in run
+2018-07-25T14:58:49+0800 [stderr#error]     runApp(config)
+2018-07-25T14:58:49+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/scripts/twistd.py", line 25, in runApp
+2018-07-25T14:58:49+0800 [stderr#error]     runner.run()
+2018-07-25T14:58:49+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/application/app.py", line 385, in run
+2018-07-25T14:58:49+0800 [stderr#error]     self.postApplication()
+2018-07-25T14:58:49+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/scripts/_twistd_unix.py", line 254, in postApplication
+2018-07-25T14:58:49+0800 [stderr#error]     self.startApplication(self.application)
+2018-07-25T14:58:49+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/scripts/_twistd_unix.py", line 442, in startApplication
+2018-07-25T14:58:49+0800 [stderr#error]     service.IService(application).privilegedStartService()
+2018-07-25T14:58:49+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/application/service.py", line 283, in privilegedStartService
+2018-07-25T14:58:49+0800 [stderr#error]     service.privilegedStartService()
+2018-07-25T14:58:49+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/application/internet.py", line 114, in privilegedStartService
+2018-07-25T14:58:49+0800 [stderr#error]     self._port = self._getPort()
+2018-07-25T14:58:49+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/application/internet.py", line 142, in _getPort
+2018-07-25T14:58:49+0800 [stderr#error]     'listen%s' % (self.method,))(*self.args, **self.kwargs)
+2018-07-25T14:58:49+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 495, in listenTCP
+2018-07-25T14:58:49+0800 [stderr#error]     p.startListening()
+2018-07-25T14:58:49+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 980, in startListening
+2018-07-25T14:58:49+0800 [stderr#error]     raise CannotListenError(self.interface, self.port, le)
+2018-07-25T14:58:49+0800 [stderr#error] twisted.internet.error.CannotListenError: Couldn't listen on any:1026: [Errno 98] Address already in use.
+2018-07-26T08:48:07+0800 [-] Loading chatserver.py...
+2018-07-26T08:48:07+0800 [-] Loaded.
+2018-07-26T08:48:07+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 18.4.0 (/usr/bin/python 2.7.12) starting up.
+2018-07-26T08:48:07+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2018-07-26T08:48:07+0800 [stderr#error] Traceback (most recent call last):
+2018-07-26T08:48:07+0800 [stderr#error]   File "/home/exiibao/.local/bin/twistd", line 11, in <module>
+2018-07-26T08:48:07+0800 [stderr#error]     sys.exit(run())
+2018-07-26T08:48:07+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/scripts/twistd.py", line 31, in run
+2018-07-26T08:48:07+0800 [stderr#error]     app.run(runApp, ServerOptions)
+2018-07-26T08:48:07+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/application/app.py", line 674, in run
+2018-07-26T08:48:07+0800 [stderr#error]     runApp(config)
+2018-07-26T08:48:07+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/scripts/twistd.py", line 25, in runApp
+2018-07-26T08:48:07+0800 [stderr#error]     runner.run()
+2018-07-26T08:48:07+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/application/app.py", line 385, in run
+2018-07-26T08:48:07+0800 [stderr#error]     self.postApplication()
+2018-07-26T08:48:07+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/scripts/_twistd_unix.py", line 254, in postApplication
+2018-07-26T08:48:07+0800 [stderr#error]     self.startApplication(self.application)
+2018-07-26T08:48:07+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/scripts/_twistd_unix.py", line 442, in startApplication
+2018-07-26T08:48:07+0800 [stderr#error]     service.IService(application).privilegedStartService()
+2018-07-26T08:48:07+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/application/service.py", line 283, in privilegedStartService
+2018-07-26T08:48:07+0800 [stderr#error]     service.privilegedStartService()
+2018-07-26T08:48:07+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/application/internet.py", line 114, in privilegedStartService
+2018-07-26T08:48:07+0800 [stderr#error]     self._port = self._getPort()
+2018-07-26T08:48:07+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/application/internet.py", line 142, in _getPort
+2018-07-26T08:48:07+0800 [stderr#error]     'listen%s' % (self.method,))(*self.args, **self.kwargs)
+2018-07-26T08:48:07+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 495, in listenTCP
+2018-07-26T08:48:07+0800 [stderr#error]     p.startListening()
+2018-07-26T08:48:07+0800 [stderr#error]   File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 980, in startListening
+2018-07-26T08:48:07+0800 [stderr#error]     raise CannotListenError(self.interface, self.port, le)
+2018-07-26T08:48:07+0800 [stderr#error] twisted.internet.error.CannotListenError: Couldn't listen on any:1026: [Errno 98] Address already in use.
+2018-07-26T08:55:15+0800 [-] Loading chatserver.py...
+2018-07-26T08:55:15+0800 [-] Loaded.
+2018-07-26T08:55:15+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 18.4.0 (/usr/bin/python 2.7.12) starting up.
+2018-07-26T08:55:15+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2018-07-26T08:55:15+0800 [-] ServerFactory starting on 1026
+2018-07-26T08:55:15+0800 [twisted.internet.protocol.ServerFactory#info] Starting factory <twisted.internet.protocol.ServerFactory instance at 0x7f7dd5233248>
+2018-07-26T09:52:32+0800 [stdout#info] Got new client: 100.98.10.148
+2018-07-26T09:53:41+0800 [stdout#info] Got new client: 100.98.61.161
+2018-07-26T09:53:44+0800 [stdout#info] received from 100.98.61.161: '123'
+2018-07-26T09:53:49+0800 [stdout#info] received from 100.98.61.161: 'hihi'
+2018-07-26T09:55:42+0800 [-] Received SIGTERM, shutting down.
+2018-07-26T09:55:42+0800 [-] (TCP Port 1026 Closed)
+2018-07-26T09:55:42+0800 [twisted.internet.protocol.ServerFactory#info] Stopping factory <twisted.internet.protocol.ServerFactory instance at 0x7f7dd5233248>
+2018-07-26T09:55:42+0800 [stdout#info] Lost a client: 100.98.61.161 
+2018-07-26T09:55:42+0800 [stdout#info] Lost a client: 100.98.10.148 
+2018-07-26T09:55:42+0800 [-] Main loop terminated.
+2018-07-26T09:55:42+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] Server Shut Down.
+2018-07-26T09:55:51+0800 [-] Loading chatserver.py...
+2018-07-26T09:55:51+0800 [-] Loaded.
+2018-07-26T09:55:51+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 18.4.0 (/usr/bin/python 2.7.12) starting up.
+2018-07-26T09:55:51+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2018-07-26T09:55:51+0800 [-] ServerFactory starting on 1026
+2018-07-26T09:55:51+0800 [twisted.internet.protocol.ServerFactory#info] Starting factory <twisted.internet.protocol.ServerFactory instance at 0x7f7865b0e2d8>
+2018-07-26T10:02:50+0800 [stdout#info] Got new client: 100.98.10.41
+2018-07-26T10:13:12+0800 [-] Received SIGTERM, shutting down.
+2018-07-26T10:13:12+0800 [-] (TCP Port 1026 Closed)
+2018-07-26T10:13:12+0800 [twisted.internet.protocol.ServerFactory#info] Stopping factory <twisted.internet.protocol.ServerFactory instance at 0x7f7865b0e2d8>
+2018-07-26T10:13:12+0800 [stdout#info] Lost a client: 100.98.10.41 
+2018-07-26T10:13:12+0800 [-] Main loop terminated.
+2018-07-26T10:13:12+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] Server Shut Down.
+2018-07-26T10:14:37+0800 [-] Loading chatserver.py...
+2018-07-26T10:14:37+0800 [-] Loaded.
+2018-07-26T10:14:37+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 18.4.0 (/usr/bin/python 2.7.12) starting up.
+2018-07-26T10:14:37+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2018-07-26T10:14:37+0800 [-] ServerFactory starting on 1026
+2018-07-26T10:14:37+0800 [twisted.internet.protocol.ServerFactory#info] Starting factory <twisted.internet.protocol.ServerFactory instance at 0x7fdf705182d8>
+2018-07-26T10:14:48+0800 [stdout#info] Got new client: 100.98.10.41
+2018-07-26T10:14:48+0800 [MyChat,0,100.98.10.41] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 614, in _doReadOrWrite
+	    why = selectable.doRead()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 205, in doRead
+	    return self._dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 211, in _dataReceived
+	    rval = self.protocol.dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/protocols/basic.py", line 572, in dataReceived
+	    why = self.lineReceived(line)
+	  File "chatserver.py", line 52, in lineReceived
+	    self.handle_VERIFY(line)
+	  File "chatserver.py", line 67, in handle_VERIFY
+	    fp.write("{}\n".format(i,nodes_list[i]))
+	exceptions.TypeError: list indices must be integers, not str
+	
+2018-07-26T10:14:48+0800 [stdout#info] Lost a client: 100.98.10.41 
+2018-07-26T10:17:07+0800 [-] Received SIGTERM, shutting down.
+2018-07-26T10:17:07+0800 [-] (TCP Port 1026 Closed)
+2018-07-26T10:17:07+0800 [twisted.internet.protocol.ServerFactory#info] Stopping factory <twisted.internet.protocol.ServerFactory instance at 0x7fdf705182d8>
+2018-07-26T10:17:07+0800 [-] Main loop terminated.
+2018-07-26T10:17:07+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] Server Shut Down.
+2018-07-26T10:17:15+0800 [-] Loading chatserver.py...
+2018-07-26T10:17:15+0800 [-] Loaded.
+2018-07-26T10:17:15+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 18.4.0 (/usr/bin/python 2.7.12) starting up.
+2018-07-26T10:17:15+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2018-07-26T10:17:15+0800 [-] ServerFactory starting on 1026
+2018-07-26T10:17:15+0800 [twisted.internet.protocol.ServerFactory#info] Starting factory <twisted.internet.protocol.ServerFactory instance at 0x7fd7097582d8>
+2018-07-26T10:17:50+0800 [stdout#info] Got new client: 100.98.10.41
+2018-07-26T10:17:50+0800 [MyChat,0,100.98.10.41] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 614, in _doReadOrWrite
+	    why = selectable.doRead()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 205, in doRead
+	    return self._dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 211, in _dataReceived
+	    rval = self.protocol.dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/protocols/basic.py", line 572, in dataReceived
+	    why = self.lineReceived(line)
+	  File "chatserver.py", line 52, in lineReceived
+	    self.handle_VERIFY(line)
+	  File "chatserver.py", line 67, in handle_VERIFY
+	    fp.write("{}\n".format(i,nodes_list[i]))
+	exceptions.TypeError: list indices must be integers, not str
+	
+2018-07-26T10:17:50+0800 [stdout#info] Lost a client: 100.98.10.41 
+2018-07-26T10:32:06+0800 [stdout#info] Got new client: 100.98.6.133
+2018-07-26T10:32:06+0800 [MyChat,1,100.98.6.133] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 614, in _doReadOrWrite
+	    why = selectable.doRead()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 205, in doRead
+	    return self._dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 211, in _dataReceived
+	    rval = self.protocol.dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/protocols/basic.py", line 572, in dataReceived
+	    why = self.lineReceived(line)
+	  File "chatserver.py", line 52, in lineReceived
+	    self.handle_VERIFY(line)
+	  File "chatserver.py", line 67, in handle_VERIFY
+	    fp.write("{}\n".format(i,nodes_list[i]))
+	exceptions.TypeError: list indices must be integers, not str
+	
+2018-07-26T10:32:06+0800 [stdout#info] Lost a client: 100.98.6.133 
+2018-07-26T10:37:22+0800 [stdout#info] Got new client: 100.98.6.133
+2018-07-26T10:37:22+0800 [MyChat,2,100.98.6.133] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 614, in _doReadOrWrite
+	    why = selectable.doRead()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 205, in doRead
+	    return self._dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 211, in _dataReceived
+	    rval = self.protocol.dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/protocols/basic.py", line 572, in dataReceived
+	    why = self.lineReceived(line)
+	  File "chatserver.py", line 52, in lineReceived
+	    self.handle_VERIFY(line)
+	  File "chatserver.py", line 67, in handle_VERIFY
+	    fp.write("{}\n".format(i,nodes_list[i]))
+	exceptions.TypeError: list indices must be integers, not str
+	
+2018-07-26T10:37:22+0800 [stdout#info] Lost a client: 100.98.6.133 
+2018-07-26T10:42:05+0800 [-] Received SIGTERM, shutting down.
+2018-07-26T10:42:05+0800 [-] (TCP Port 1026 Closed)
+2018-07-26T10:42:05+0800 [twisted.internet.protocol.ServerFactory#info] Stopping factory <twisted.internet.protocol.ServerFactory instance at 0x7fd7097582d8>
+2018-07-26T10:42:05+0800 [-] Main loop terminated.
+2018-07-26T10:42:06+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] Server Shut Down.
+2018-07-26T10:42:34+0800 [-] Loading chatserver.py...
+2018-07-26T10:42:34+0800 [-] Loaded.
+2018-07-26T10:42:34+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 18.4.0 (/usr/bin/python 2.7.12) starting up.
+2018-07-26T10:42:34+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2018-07-26T10:42:34+0800 [-] ServerFactory starting on 1026
+2018-07-26T10:42:34+0800 [twisted.internet.protocol.ServerFactory#info] Starting factory <twisted.internet.protocol.ServerFactory instance at 0x7f269c4042d8>
+2018-07-26T10:43:18+0800 [stdout#info] Got new client: 100.98.10.41
+2018-07-26T10:43:18+0800 [MyChat,0,100.98.10.41] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 614, in _doReadOrWrite
+	    why = selectable.doRead()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 205, in doRead
+	    return self._dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 211, in _dataReceived
+	    rval = self.protocol.dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/protocols/basic.py", line 572, in dataReceived
+	    why = self.lineReceived(line)
+	  File "chatserver.py", line 52, in lineReceived
+	    self.handle_VERIFY(line)
+	  File "chatserver.py", line 67, in handle_VERIFY
+	    fp.write("{}\n".format(i,nodes_list[i]))
+	exceptions.TypeError: list indices must be integers, not str
+	
+2018-07-26T10:43:18+0800 [stdout#info] Lost a client: 100.98.10.41 
+2018-07-26T10:45:13+0800 [stdout#info] Got new client: 100.98.10.41
+2018-07-26T10:45:13+0800 [MyChat,1,100.98.10.41] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 614, in _doReadOrWrite
+	    why = selectable.doRead()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 205, in doRead
+	    return self._dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 211, in _dataReceived
+	    rval = self.protocol.dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/protocols/basic.py", line 572, in dataReceived
+	    why = self.lineReceived(line)
+	  File "chatserver.py", line 52, in lineReceived
+	    self.handle_VERIFY(line)
+	  File "chatserver.py", line 67, in handle_VERIFY
+	    fp.write("{}\n".format(i,nodes_list[i]))
+	exceptions.TypeError: list indices must be integers, not str
+	
+2018-07-26T10:45:13+0800 [stdout#info] Lost a client: 100.98.10.41 
+2018-07-26T11:29:16+0800 [stdout#info] Got new client: 100.98.10.148
+2018-07-26T11:29:16+0800 [MyChat,2,100.98.10.148] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 614, in _doReadOrWrite
+	    why = selectable.doRead()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 205, in doRead
+	    return self._dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 211, in _dataReceived
+	    rval = self.protocol.dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/protocols/basic.py", line 572, in dataReceived
+	    why = self.lineReceived(line)
+	  File "chatserver.py", line 52, in lineReceived
+	    self.handle_VERIFY(line)
+	  File "chatserver.py", line 67, in handle_VERIFY
+	    fp.write("{}\n".format(i,nodes_list[i]))
+	exceptions.TypeError: list indices must be integers, not str
+	
+2018-07-26T11:29:16+0800 [stdout#info] Lost a client: 100.98.10.148 
+2018-07-26T14:07:02+0800 [stdout#info] Got new client: 100.98.10.41
+2018-07-26T14:07:02+0800 [MyChat,3,100.98.10.41] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 614, in _doReadOrWrite
+	    why = selectable.doRead()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 205, in doRead
+	    return self._dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 211, in _dataReceived
+	    rval = self.protocol.dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/protocols/basic.py", line 572, in dataReceived
+	    why = self.lineReceived(line)
+	  File "chatserver.py", line 52, in lineReceived
+	    self.handle_VERIFY(line)
+	  File "chatserver.py", line 67, in handle_VERIFY
+	    fp.write("{}\n".format(i,nodes_list[i]))
+	exceptions.TypeError: list indices must be integers, not str
+	
+2018-07-26T14:07:02+0800 [stdout#info] Lost a client: 100.98.10.41 
+2018-07-26T14:08:14+0800 [-] Received SIGTERM, shutting down.
+2018-07-26T14:08:14+0800 [-] (TCP Port 1026 Closed)
+2018-07-26T14:08:14+0800 [twisted.internet.protocol.ServerFactory#info] Stopping factory <twisted.internet.protocol.ServerFactory instance at 0x7f269c4042d8>
+2018-07-26T14:08:14+0800 [-] Main loop terminated.
+2018-07-26T14:08:14+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] Server Shut Down.
+2018-07-26T14:08:32+0800 [-] Loading chatserver.py...
+2018-07-26T14:08:32+0800 [-] Loaded.
+2018-07-26T14:08:32+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 18.4.0 (/usr/bin/python 2.7.12) starting up.
+2018-07-26T14:08:32+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2018-07-26T14:08:32+0800 [-] ServerFactory starting on 1026
+2018-07-26T14:08:32+0800 [twisted.internet.protocol.ServerFactory#info] Starting factory <twisted.internet.protocol.ServerFactory instance at 0x7fe4589e62d8>
+2018-07-26T14:09:00+0800 [stdout#info] Got new client: 100.98.10.41
+2018-07-26T14:15:37+0800 [-] Received SIGTERM, shutting down.
+2018-07-26T14:15:37+0800 [-] (TCP Port 1026 Closed)
+2018-07-26T14:15:37+0800 [twisted.internet.protocol.ServerFactory#info] Stopping factory <twisted.internet.protocol.ServerFactory instance at 0x7fe4589e62d8>
+2018-07-26T14:15:37+0800 [stdout#info] Lost a client: 100.98.10.41 
+2018-07-26T14:15:37+0800 [-] Main loop terminated.
+2018-07-26T14:15:37+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] Server Shut Down.
+2018-07-26T14:15:48+0800 [-] Loading chatserver.py...
+2018-07-26T14:15:48+0800 [-] Loaded.
+2018-07-26T14:15:48+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 18.4.0 (/usr/bin/python 2.7.12) starting up.
+2018-07-26T14:15:48+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2018-07-26T14:15:48+0800 [-] ServerFactory starting on 1026
+2018-07-26T14:15:48+0800 [twisted.internet.protocol.ServerFactory#info] Starting factory <twisted.internet.protocol.ServerFactory instance at 0x7f6e42a872d8>
+2018-07-26T14:16:01+0800 [stdout#info] Got new client: 100.98.10.41
+2018-07-26T14:16:01+0800 [MyChat,0,100.98.10.41] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 614, in _doReadOrWrite
+	    why = selectable.doRead()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 205, in doRead
+	    return self._dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 211, in _dataReceived
+	    rval = self.protocol.dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/protocols/basic.py", line 572, in dataReceived
+	    why = self.lineReceived(line)
+	  File "chatserver.py", line 52, in lineReceived
+	    self.handle_VERIFY(line)
+	  File "chatserver.py", line 68, in handle_VERIFY
+	    fp.write("{} {}\n".format(i,nodes_list[i]))
+	exceptions.TypeError: list indices must be integers, not str
+	
+2018-07-26T14:16:01+0800 [stdout#info] Lost a client: 100.98.10.41 
+2018-07-26T14:19:03+0800 [-] Received SIGTERM, shutting down.
+2018-07-26T14:19:03+0800 [-] (TCP Port 1026 Closed)
+2018-07-26T14:19:03+0800 [twisted.internet.protocol.ServerFactory#info] Stopping factory <twisted.internet.protocol.ServerFactory instance at 0x7f6e42a872d8>
+2018-07-26T14:19:03+0800 [-] Main loop terminated.
+2018-07-26T14:19:03+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] Server Shut Down.
+2018-07-26T14:19:11+0800 [-] Loading chatserver.py...
+2018-07-26T14:19:11+0800 [-] Loaded.
+2018-07-26T14:19:11+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 18.4.0 (/usr/bin/python 2.7.12) starting up.
+2018-07-26T14:19:11+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2018-07-26T14:19:11+0800 [-] ServerFactory starting on 1026
+2018-07-26T14:19:11+0800 [twisted.internet.protocol.ServerFactory#info] Starting factory <twisted.internet.protocol.ServerFactory instance at 0x7fa49dfbf2d8>
+2018-07-26T14:19:20+0800 [stdout#info] Got new client: 100.98.10.41
+2018-07-26T14:19:20+0800 [MyChat,0,100.98.10.41] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 614, in _doReadOrWrite
+	    why = selectable.doRead()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 205, in doRead
+	    return self._dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 211, in _dataReceived
+	    rval = self.protocol.dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/protocols/basic.py", line 572, in dataReceived
+	    why = self.lineReceived(line)
+	  File "chatserver.py", line 52, in lineReceived
+	    self.handle_VERIFY(line)
+	  File "chatserver.py", line 72, in handle_VERIFY
+	    self.add_new_node_to_map(nodes_list)
+	  File "chatserver.py", line 59, in add_new_node_to_map
+	    fp.write("{} {}\n".format(i,nodes_list[i]))
+	exceptions.TypeError: list indices must be integers, not str
+	
+2018-07-26T14:19:20+0800 [stdout#info] Lost a client: 100.98.10.41 
+2018-07-26T14:21:58+0800 [-] Received SIGTERM, shutting down.
+2018-07-26T14:21:58+0800 [-] (TCP Port 1026 Closed)
+2018-07-26T14:21:58+0800 [twisted.internet.protocol.ServerFactory#info] Stopping factory <twisted.internet.protocol.ServerFactory instance at 0x7fa49dfbf2d8>
+2018-07-26T14:21:58+0800 [-] Main loop terminated.
+2018-07-26T14:21:58+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] Server Shut Down.
+2018-07-26T14:22:11+0800 [-] Loading chatserver.py...
+2018-07-26T14:22:11+0800 [-] Loaded.
+2018-07-26T14:22:11+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 18.4.0 (/usr/bin/python 2.7.12) starting up.
+2018-07-26T14:22:11+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2018-07-26T14:22:11+0800 [-] ServerFactory starting on 1026
+2018-07-26T14:22:11+0800 [twisted.internet.protocol.ServerFactory#info] Starting factory <twisted.internet.protocol.ServerFactory instance at 0x7f9a09ea1368>
+2018-07-26T14:23:06+0800 [stdout#info] Got new client: 100.98.10.41
+2018-07-26T14:23:06+0800 [MyChat,0,100.98.10.41] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 614, in _doReadOrWrite
+	    why = selectable.doRead()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 205, in doRead
+	    return self._dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 211, in _dataReceived
+	    rval = self.protocol.dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/protocols/basic.py", line 572, in dataReceived
+	    why = self.lineReceived(line)
+	  File "chatserver.py", line 52, in lineReceived
+	    self.handle_VERIFY(line)
+	  File "chatserver.py", line 73, in handle_VERIFY
+	    self.add_new_node_to_map(nodes_list)
+	  File "chatserver.py", line 59, in add_new_node_to_map
+	    print("{} : {}\n".format(i,new_node_list[i]))
+	exceptions.TypeError: list indices must be integers, not str
+	
+2018-07-26T14:23:06+0800 [stdout#info] Lost a client: 100.98.10.41 
+2018-07-26T14:25:42+0800 [stdout#info] Got new client: 100.98.6.133
+2018-07-26T14:25:42+0800 [MyChat,1,100.98.6.133] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 614, in _doReadOrWrite
+	    why = selectable.doRead()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 205, in doRead
+	    return self._dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 211, in _dataReceived
+	    rval = self.protocol.dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/protocols/basic.py", line 572, in dataReceived
+	    why = self.lineReceived(line)
+	  File "chatserver.py", line 52, in lineReceived
+	    self.handle_VERIFY(line)
+	  File "chatserver.py", line 73, in handle_VERIFY
+	    self.add_new_node_to_map(nodes_list)
+	  File "chatserver.py", line 59, in add_new_node_to_map
+	    print("{} : {}\n".format(i,new_node_list[i]))
+	exceptions.TypeError: list indices must be integers, not str
+	
+2018-07-26T14:25:42+0800 [stdout#info] Lost a client: 100.98.6.133 
+2018-07-27T11:07:12+0800 [stdout#info] Got new client: 100.98.60.182
+2018-07-27T11:07:12+0800 [MyChat,2,100.98.60.182] Unhandled Error
+	Traceback (most recent call last):
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 103, in callWithLogger
+	    return callWithContext({"system": lp}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/log.py", line 86, in callWithContext
+	    return context.call({ILogContext: newCtx}, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 122, in callWithContext
+	    return self.currentContext().callWithContext(ctx, func, *args, **kw)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/python/context.py", line 85, in callWithContext
+	    return func(*args,**kw)
+	--- <exception caught here> ---
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/posixbase.py", line 614, in _doReadOrWrite
+	    why = selectable.doRead()
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 205, in doRead
+	    return self._dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/internet/tcp.py", line 211, in _dataReceived
+	    rval = self.protocol.dataReceived(data)
+	  File "/home/exiibao/.local/lib/python2.7/site-packages/twisted/protocols/basic.py", line 572, in dataReceived
+	    why = self.lineReceived(line)
+	  File "chatserver.py", line 52, in lineReceived
+	    self.handle_VERIFY(line)
+	  File "chatserver.py", line 73, in handle_VERIFY
+	    self.add_new_node_to_map(nodes_list)
+	  File "chatserver.py", line 59, in add_new_node_to_map
+	    print("{} : {}\n".format(i,new_node_list[i]))
+	exceptions.TypeError: list indices must be integers, not str
+	
+2018-07-27T11:07:12+0800 [stdout#info] Lost a client: 100.98.60.182 
+2018-07-30T14:21:30+0800 [-] Received SIGTERM, shutting down.
+2018-07-30T14:21:30+0800 [-] (TCP Port 1026 Closed)
+2018-07-30T14:21:30+0800 [twisted.internet.protocol.ServerFactory#info] Stopping factory <twisted.internet.protocol.ServerFactory instance at 0x7f9a09ea1368>
+2018-07-30T14:21:30+0800 [-] Main loop terminated.
+2018-07-30T14:21:30+0800 [twisted.scripts._twistd_unix.UnixAppLogger#info] Server Shut Down.
