@@ -150,32 +150,33 @@
 
             //console.log(response);
             //Generate Transactions Table
-            var transactions = [];
-            count = 1;
+            // var transactions = [];
+            // count = 1;
 
-            for (i = 1; i < response.length; i++) { 
-              for (j = 0; j < response["chain"][i]["transactions"].length; j++) {
+            // for (i = 1; i < response.length; i++) { 
+            //   for (j = 0; j < response["chain"][i]["transactions"].length; j++) {
 
-                //format date 
-                var options = {  year: "numeric", month: "short",  day: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit"  };
-                var date = new Date(response["chain"][i]["timestamp"] * 1000);
-                var formattedDateTime = date.toLocaleTimeString("en-us", options);
+            //     //format date 
+            //     var options = {  year: "numeric", month: "short",  day: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit"  };
+            //     var date = new Date(response["chain"][i]["timestamp"] * 1000);
+            //     var formattedDateTime = date.toLocaleTimeString("en-us", options);
 
-                transaction = [count,
-                              response["chain"][i]["transactions"][j]["recipient_address"],
-                              response["chain"][i]["transactions"][j]["sender_address"],
-                              response["chain"][i]["transactions"][j]["value"],
-                              formattedDateTime,
-                              response["chain"][i]["block_number"]];
-                transactions.push(transaction);
+            //     transaction = [count,
+            //                   response["chain"][i]["transactions"][j]["recipient_address"],
+            //                   response["chain"][i]["transactions"][j]["sender_address"],
+            //                   response["chain"][i]["transactions"][j]["value"],
+            //                   formattedDateTime,
+            //                   response["chain"][i]["block_number"]];
+            //     transactions.push(transaction);
 
-                count += 1;
-              };
-            };
+            //     count += 1;
+            //   };
+            // };
+            var tasks = [[1,"dog","dog",2],[2,"cat","cat",2]];
 
             // Restrict a column to 10 characters, do split words
               $('#transactions_table').dataTable( {
-                data: transactions,
+                data: tasks,
                 columns: [{ title: "#" },
                           { title: "Recipient Address"},
                           { title: "Sender Address"},

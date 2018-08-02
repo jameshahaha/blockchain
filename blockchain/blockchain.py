@@ -238,45 +238,45 @@ class Blockchain:
 
 # Send data to the telnet server once a block is mined
 def telnet_connect(msg):
-	HOST = '100.98.10.148'
-	PORT = 1025
+    HOST = '100.98.10.148'
+    PORT = 1025
 
-        tn = Telnet(HOST, PORT)
-        line = tn.read_until("An apple a day keeps the doctor away\r\n")
-        print(line)
+    tn = Telnet(HOST, PORT)
+    line = tn.read_until("An apple a day keeps the doctor away\r\n")
+    print(line)
 
-        tn.write(b'GOOD\r\n')
-        line = tn.read_until("\n")
-        print(line)
-        tx = ''
+    tn.write(b'GOOD\r\n')
+    line = tn.read_until("\n")
+    print(line)
+    tx = ''
 
-        for key, value in msg.items():
-                tx += key + ': ' + str(value) + '\r\n'
-        print("Sending data: {}".format(tx))
-        tn.write(b'{}'.format(tx))
-        line = tn.read_until("\n")
+    for key, value in msg.items():
+        tx += key + ': ' + str(value) + '\r\n'
+    print("Sending data: {}".format(tx))
+    tn.write(b'{}'.format(tx))
+    line = tn.read_until("\n")
 
-        print("Closing the connection ...")
-        tn.close()
+    print("Closing the connection ...")
+    tn.close()
 
 # Add a permanent telnet connection to the chatserver to receive data 
 def permanent_telnet_connection():
-	HOST = '100.98.10.148'
-        PORT = 1025
+    HOST = '100.98.10.148'
+    PORT = 1025
 
-        tn = Telnet(HOST, PORT)
+    tn = Telnet(HOST, PORT)
 
-        line = tn.read_until("An apple a day keeps the doctor away\r\n")
+    line = tn.read_until("An apple a day keeps the doctor away\r\n")
 #        print(line)
-        tn.write(b'GOOD\r\n')
+    tn.write(b'GOOD\r\n')
 
-        while 'quit' not in line:
-                line = tn.read_until("\n")
+    while 'quit' not in line:
+            line = tn.read_until("\n")
 #                print(line)
-		write_data(line)
-        tn.close()
-	print('Perm connection stopped by QUIT command')
-	THREAD_STATE = False
+    write_data(line)
+    tn.close()
+    print('Perm connection stopped by QUIT command')
+    THREAD_STATE = False
 
 
 # Write the data into a local file
@@ -461,16 +461,16 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 	port = args.port
 
-	# app.run(host='100.98.10.148', port=port)
-	P = threading.Thread(target = permanent_telnet_connection)
-	R = threading.Thread(target = run_app, args = (port,))
-	P.daemon = True
-	R.daemon = True
-	P.start()
-	R.start()
+	app.run(host='127.0.0.1', port=port)
+	# P = threading.Thread(target = permanent_telnet_connection)
+	# R = threading.Thread(target = run_app, args = (port,))
+	# P.daemon = True
+	# R.daemon = True
+	# P.start()
+	# R.start()
 
-	while True:
-		sleep(1)
+	# while True:
+	# 	sleep(1)
 
 #	if (THREAD_STATE == False):
 #		print(P.is_alive())
