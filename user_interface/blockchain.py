@@ -88,10 +88,9 @@ def index():
 def announcer():
     return render_template('./announcer.html')
 
-
-# @app.route('/submit')
-# def generate_transaction():
-#     return 600
+@app.route('/miner')
+def miner():
+    return render_template('./miner.html')
 
 @app.route('/tasklist')
 def tasklist():
@@ -114,23 +113,7 @@ def submit_task():
     response = {'task': task.to_dict(), 'signature': task.sign_transaction()}
     return jsonify(response), 200
 
-# # @app.route('/confirm', methods=['POST'])
-# # def confirm_task():
 
-
-#     sender_address = request.form['sender_address']
-#     task_description = request.form['task_description']
-#     value = request.form['amount']
-#     signature = request.form['signature']
-
-#     task = OrderedDict({'sender_address': sender_address,
-#                             'task_description': task_description,
-#                             'value': value})
-
-
-# #     # response = {'task': task, 'signature': signature}
-
-# #     return jsonify(response), 200
 
 
 if __name__ == '__main__':
